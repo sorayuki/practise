@@ -34,13 +34,14 @@ fn binarySearch(dest : i32, data : &[i32], base : usize) -> isize {
 }
 
 fn main() {
+    let mut rndGen = rand::thread_rng();
     for x in 1..10000 {
-        let count = rand::thread_rng().gen_range(10, 100);
-        let mut data : Vec<i32> = Vec::new();
-        for i in 1..count {
+        let count = rndGen.gen_range(10, 500);
+        let mut data : Vec<i32> = Vec::with_capacity(count as usize);
+        for i in 0..count {
             data.push(i as i32);
         }
-        let targetIndex : isize = rand::thread_rng().gen_range(0, count - 1);
+        let targetIndex : isize = rndGen.gen_range(0, count);
         
         let searchResult = binarySearch(data[targetIndex as usize], &data, 0);
         
